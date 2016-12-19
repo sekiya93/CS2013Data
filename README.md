@@ -1,9 +1,5 @@
 # CS2013Data
 
-Takayuki Sekiya
-sekiya[at]ecc.u-tokyo.ac.jp
-
-(C) Copyright 2016, Takayuki Sekiya (sekiya[at]ecc.u-tokyo.ac.jp)
 
 ## OBJECTIVE
 
@@ -25,7 +21,6 @@ The parameters used by (ss)LDA.
 The name of 18 KAs in CS2013 BOK.
 * word.csv  
 3304 words in CS2013 BOK.
-
 * CS140_result.csv  
 CS140 [CSCI140] is a introductory course on algorithm design and analysis techniques. This course is a course exemplar of CS2013 Final Report [CS2013] at p.234.  
 This file is obtained by running analyze_with_CS2013.pl with the text extracted from CS140 Web Site (2016-12-13).
@@ -60,10 +55,15 @@ This file is obtained by running analyze_with_CS2013.pl with the text extracted 
 [ssLDA] T. Sekiya, Y. Matsuda, and K. Yamaguchi. Curriculum Analysis of CS Departments Based on CS2013 by Simplified, Supervised LDA. LAK’15, Proceedings of the Fifth International Conference on Learning Analytics And Knowledge, pp. 330-339, NY, USA, 2015.
 
 
-## License
+## LICENSE
 
 This software (CS2013Data) is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 CS2013Data is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+
+Takayuki Sekiya
+sekiya[at]ecc.u-tokyo.ac.jp
+
+(C) Copyright 2016, Takayuki Sekiya (sekiya[at]ecc.u-tokyo.ac.jp)
