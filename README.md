@@ -5,9 +5,11 @@
 
 This is a package of scripts and data for analysing a text based on the Body of Knowledge (BOK) of CS2013 [CS2013]. Outputs consist of the rates in 18 Knowledge Area (KA)s of CS2013 followed by the rates in three clusters as shown below.
 
-* HUMAN:          [HCI, SP, SE]
-* THEORY:         [AL, DS, CN, GV, IS]
-* IMPLEMENTATION: [AR, SF, OS, PD, IAS, NC, IM, PBD, PL, SDF]
+* HUMAN(C1):                    [HCI, SP, SE]
+* THEORY(C2):                   [AL, DS, CN, GV, IS]
+* IMPLEMENTATION(C3):           [AR, SF, OS, PD, IAS, NC, IM, PBD, PL, SDF]
+* SOFTWARE IMPLEMENTATION(C3a): [PBD, PL, SDF]
+* HARDWARE IMPLEMENTATION(C3b): [AR, SF, OS, PD, IAS, NC, IM]
 
 ## FILE
 
