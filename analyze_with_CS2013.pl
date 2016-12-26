@@ -4,7 +4,7 @@
 # analyze_with_CS2013.pl
 #
 # Created: Thu Dec  8 11:17:00 2016
-# Time-stamp: <2016-12-09 18:44:36 sekiya>
+# Time-stamp: <2016-12-26 09:53:37 sekiya>
 #
 # - 引数として与えられたテキストファイルについて，
 #   CS2013 の Knowledge Area の割合を出力する
@@ -313,21 +313,19 @@ sub read_inf_gamma_dat_from_text{
 # factor space
 #############################################################
 sub calc_factor{
-    my ($normalized_vector_ref) = @_;
+    my ($normalized_vector_ref, $cluster_ref) = @_;
 
-    my @clusters = (
-	# HUMAN:          [HCI, SP, SE]
-	[6, 18, 16], 
-	# THEORY:         [AL, DS, CN, GV, IS]
-	[1, 4, 3, 5, 9],
-	# IMPLEMENTATION: [AR, SF, OS, PD, IAS, NC, IM, PBD, PL, SDF]
-	[2, 17, 11, 13, 7, 10, 8, 12, 14, 15]
-	);
-    
-    my @factor   = (0, 0, 0);
-    for(my $i = 0; $i < 3; $i++){
-	map{$factor[$i] += $normalized_vector_ref->[$_ - 1]} @{$clusters[$i]};
+    my $size_of_cluster = scalar(@{$cluster_ref});
+
+    my @factor = ();
+    for(my $i = 0; $i < $size_of_cluster; $i++){
+	push(@factor, 0);
     }
+    for(my $i = 0; $i < $size_of_cluster; $i++){
+	map{$factor[$i] += $normalized_vector_ref->[$_ - 1]} @{$cluster_ref->[$i]};
+    }
+
+    # normlize
     my $sum = 0;
     map{$sum += $_} @factor;
 
@@ -372,15 +370,40 @@ my $result_fh = FileHandle->new(RESULT_FILE, O_CREAT|O_WRONLY);
 die "Cannot open RESULT_FILE. Stop." if(!defined($result_fh));
 printf(STDERR "\nGenerate %s.\n", RESULT_FILE);
 
-$result_fh->printf("%s,C1,C2,C3\n", join(",", map{$_->{id}} @{$ka_col_ref}));
+my @cluster3 = (
+    # HUMAN:          [HCI, SP, SE]
+    [6, 18, 16], 
+    # THEORY:         [AL, DS, CN, GV, IS]
+    [1, 4, 3, 5, 9],
+    # IMPLEMENTATION: [AR, SF, OS, PD, IAS, NC, IM, PBD, PL, SDF]
+    [2, 17, 11, 13, 7, 10, 8, 12, 14, 15]
+    );
+
+my @cluster4 = (
+    # HUMAN:          [HCI, SP, SE]
+    [6, 18, 16], 
+    # THEORY:         [AL, DS, CN, GV, IS]
+    [1, 4, 3, 5, 9],
+    # SOFTWARE IMPLEMENTATION: [PBD, PL, SDF]
+    [12, 14, 15],
+    # HARDWARE IMPLEMENTATION: [AR, SF, OS, PD, IAS, NC, IM]
+    [2, 17, 11, 13, 7, 10, 8]
+    );
+
+$result_fh->printf("%s,C1,C2,C3,C3a,C3b\n", join(",", map{$_->{id}} @{$ka_col_ref}));
+
 my $gamma_fh = FileHandle->new(INF_GAMMA_FILE, O_RDONLY);
 die "Cannot open INF_GAMMA_FILE. Stop." if(!defined($gamma_fh));
+
 while(my $line = $gamma_fh->getline()){
     my $ka_vector_ref = read_inf_gamma_dat_from_text($line);    
-    $result_fh->printf("%s,", join(",", map{sprintf("%.4f", $_)} @{$ka_vector_ref}));
-    my $factor_ref = calc_factor($ka_vector_ref);
-    $result_fh->printf("%s\n", join(",", map{sprintf("%.4f", $_)} @{$factor_ref}));
+    $result_fh->printf("%s", join(",", map{sprintf("%.4f", $_)} @{$ka_vector_ref}));
+    my $factor3_ref = calc_factor($ka_vector_ref, \@cluster3);
+    $result_fh->printf(",%s", join(",", map{sprintf("%.4f", $_)} @{$factor3_ref}));
+    my $factor4_ref = calc_factor($ka_vector_ref, \@cluster4);
+    $result_fh->printf(",%.4f,%.4f\n", $factor4_ref->[2], $factor4_ref->[3]);
 }
+
 $gamma_fh->close();
 $result_fh->close();
 
