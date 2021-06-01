@@ -30,7 +30,7 @@ This file is obtained by running analyze_with_CS2013.pl with the text extracted 
 ## PROCEDURE
 
 1. Set up the Perl environment.
-2. Install lda-c from http://www.cs.princeton.edu/~blei/lda-c/.
+2. Install lda-c from https://github.com/blei-lab/lda-c/
 3. Place the following files in the lda-c directory.  
 `analyze_with_CS2013.pl, word.csv, ka.csv, settings.conf, final.beta, final.other`
 4. Run the following command in the directory.  
