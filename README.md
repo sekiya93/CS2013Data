@@ -11,6 +11,8 @@ This is a package of scripts and data for analysing a text based on the Body of 
 * SOFTWARE IMPLEMENTATION(C3a): [PBD, PL, SDF]
 * HARDWARE IMPLEMENTATION(C3b): [AR, SF, OS, PD, IAS, NC, IM]
 
+P.S.: We released CS2023Data (https://github.com/sekiya93/CS2023Data) in September 2025 for analysis on the BOK for the Computer Science Curriculum 2023 (CS2023) using LDA.
+
 ## FILE
 
 * analyze_with_CS2013.pl  
